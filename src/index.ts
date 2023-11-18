@@ -7,6 +7,8 @@ import { convertData_DMDASSCToCurrent } from './oldToNewDataConverter';
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
 
+require("./env")("./.data/env.json");
+
 const port = 3000;
 const app = express();
 const animelist = new Animelist();
@@ -179,7 +181,7 @@ function setupAPI()
       res.sendStatus(500);
       return;
     }
-    
+
     const file = req.files[0];
 
     if(fs.existsSync("./.data/animes.json")) fs.rmSync("./.data/animes.json");
@@ -198,7 +200,7 @@ function setupAPI()
 
 function authorizeKey(key: string)
 {
-  return key === "12345";
+  return key === process.env.AUTH_KEY;
 }
 
 main();
