@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { getAuthKey } from '../home/Home';
+import MainNavbar from '../../components/MainNavbar';
 
 function Data() {
     const [file, setFile] = React.useState<any>()
@@ -34,16 +35,19 @@ function Data() {
     }
 
     return (
-        <div className='container'>
-            <h1>Data</h1>
-            <form onSubmit={handleSubmit}>
-                <input type="file" onChange={handleChange} />
-                <button type="submit">Upload</button>
-            </form>
-            <form action="/api/downloadDataFile" method="get">
-                <button type="submit">Download Single File</button>
-            </form>
-        </div>
+        <>
+            <MainNavbar/>
+            <div className='container'>
+                <h1>Data</h1>
+                <form onSubmit={handleSubmit}>
+                    <input type="file" onChange={handleChange} />
+                    <button type="submit">Upload</button>
+                </form>
+                <form action="/api/downloadDataFile" method="get">
+                    <button type="submit">Download Single File</button>
+                </form>
+            </div>
+        </>
     );
 }
 

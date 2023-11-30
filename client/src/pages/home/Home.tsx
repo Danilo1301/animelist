@@ -1,5 +1,6 @@
 import React from 'react';
 import AnimeList from './components/AnimeList';
+import MainNavbar from '../../components/MainNavbar';
 
 function Home() {
     React.useEffect(() => {
@@ -42,19 +43,22 @@ function Home() {
     }
     
     return (
-        <div className='container'>
-            <h1>Home</h1>
-            <div className='row'>
-                <div className='col'>
-                    <button type="button" className="btn btn-primary" onClick={handleAddNewAnime}>Add new anime</button>
+        <>
+            <MainNavbar/>
+            <div className='container'>
+                
+                <div className='row p-2'>
+                    <div className='col'>
+                        <button type="button" className="btn btn-primary" onClick={handleAddNewAnime}>Add new anime</button>
+                    </div>
+                    <div className='col-auto'>
+                        <button type="button" className="btn btn-primary" onClick={handleSetKey}>Set key</button>
+                        <button type="button" className="btn btn-danger" onClick={handleClearKey}>Clear key</button>
+                    </div>
                 </div>
-                <div className='col-auto'>
-                    <button type="button" className="btn btn-primary" onClick={handleSetKey}>Set key</button>
-                    <button type="button" className="btn btn-danger" onClick={handleClearKey}>Clear key</button>
-                </div>
+                <AnimeList></AnimeList>
             </div>
-            <AnimeList></AnimeList>
-        </div>
+        </>
     );
 }
 

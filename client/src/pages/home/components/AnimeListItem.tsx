@@ -57,9 +57,9 @@ function AnimeListItem({ anime }: { anime: Anime }) {
     }
 
     return (
-        <div className='row p-1' onClick={handleClick}>
+        <div className='row p-1 rounded' style={{background: "#eceeff", marginBottom: "5px"}} onClick={handleClick}>
             <div className="col-auto p-0">
-                <img alt={anime.name} src={anime.imageUrl} style={{width: "100px"}} className="rounded img-fluid float-left"></img>
+                <img alt="Image" src={anime.imageUrl} style={{width: "100px", minHeight: "100px", minWidth: "100px", background: "white"}} className="rounded img-fluid float-left"></img>
             </div>
             <div className="col">
                 <div>

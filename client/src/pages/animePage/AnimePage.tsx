@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Anime } from '../../../../src/anime';
 import { response } from 'express';
 import { getAuthKey } from '../home/Home';
+import MainNavbar from '../../components/MainNavbar';
 
 const getAnimeInfo = async (id: string) => {
     return new Promise<Anime>((resolve, reject) =>
@@ -112,63 +113,67 @@ function AnimePage() {
     if(!anime) return <></>;
   
     return (
-        <div className='container'>
-            <h3>Edit anime</h3>
-            <b>Anime ID {id}</b>
-            
-            <div className='mt-4'>
-                <span>Name:</span>
-                <input type="text" className="form-control" placeholder="Username" onChange={e => setName(e.target.value)} value={name}></input>
-            </div>
-
-            <div className='row'>
-                <div className='col'>
-                    <span>Watched episodes:</span>
-                    <input type="number" className="form-control" placeholder="Watched episodes" onChange={e => setWatchedEpisodes(parseInt(e.target.value))} value={watchedEpisodes}></input>
+        <>
+            <MainNavbar/>
+            <div className='container'>
+                <h3>Edit anime</h3>
+                <img alt="Image" src={anime.imageUrl} style={{width: "100px", minHeight: "100px", minWidth: "100px", background: "white"}} className="rounded img-fluid float-left"></img>
+                <b className="p-2">Anime ID {id}</b>
+              
+                <div className='mt-4'>
+                    <span>Name:</span>
+                    <input type="text" className="form-control" placeholder="Username" onChange={e => setName(e.target.value)} value={name}></input>
                 </div>
-                <div className='col'>
-                    <span>Total episodes:</span>
-                    <input type="number" className="form-control" placeholder="Total episodes" onChange={e => setTotalEpisodes(parseInt(e.target.value))} value={totalEpisodes}></input>
+
+                <div className='row'>
+                    <div className='col'>
+                        <span>Watched episodes:</span>
+                        <input type="number" className="form-control" placeholder="Watched episodes" onChange={e => setWatchedEpisodes(parseInt(e.target.value))} value={watchedEpisodes}></input>
+                    </div>
+                    <div className='col'>
+                        <span>Total episodes:</span>
+                        <input type="number" className="form-control" placeholder="Total episodes" onChange={e => setTotalEpisodes(parseInt(e.target.value))} value={totalEpisodes}></input>
+                    </div>
+                </div>
+
+                <div className='row'>
+                    <div className='col'>
+                        <span>Watched OVAs:</span>
+                        <input type="number" className="form-control" placeholder="Watched OVAs" onChange={e => setWatchedOvas(parseInt(e.target.value))} value={watchedOvas}></input>
+                    </div>
+                    <div className='col'>
+                        <span>Total OVAs:</span>
+                        <input type="number" className="form-control" placeholder="Total OVAs" onChange={e => setTotalOvas(parseInt(e.target.value))} value={totalOvas}></input>
+                    </div>
+                </div>
+
+                <div className=''>
+                    <span>Image URL:</span>
+                    <input type="text" className="form-control" placeholder="Image URL" onChange={e => setImageUrl(e.target.value)} value={imageUrl}></input>
+                </div>
+
+                <div className=''>
+                    <span>Next episode date:</span>
+                    <input type="date" className="form-control" placeholder="Next episode date" onChange={e => {
+                        const str = e.target.value;
+                        const date = new Date(str);
+
+                        console.log(str, date.getTime());
+
+                        setNextEpisode(str);
+                    }} value={nextEpisode}></input>
+                </div>
+
+                <div className='row mt-4'>
+                    <div className='col d-grid'>
+                        <button type="button" className="btn btn-primary" onClick={handleSave}>Save</button>
+                    </div>
+                    <div className='col d-grid'>
+                    <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
+                    </div>
                 </div>
             </div>
-
-            <div className='row'>
-                <div className='col'>
-                    <span>Watched OVAs:</span>
-                    <input type="number" className="form-control" placeholder="Watched OVAs" onChange={e => setWatchedOvas(parseInt(e.target.value))} value={watchedOvas}></input>
-                </div>
-                <div className='col'>
-                    <span>Total OVAs:</span>
-                    <input type="number" className="form-control" placeholder="Total OVAs" onChange={e => setTotalOvas(parseInt(e.target.value))} value={totalOvas}></input>
-                </div>
-            </div>
-
-            <div className=''>
-                <span>Image URL:</span>
-                <input type="text" className="form-control" placeholder="Image URL" onChange={e => setImageUrl(e.target.value)} value={imageUrl}></input>
-            </div>
-
-            <div className=''>
-                <span>Next episode date:</span>
-                <input type="date" className="form-control" placeholder="Next episode date" onChange={e => {
-                    const str = e.target.value;
-                    const date = new Date(str);
-
-                    console.log(str, date.getTime());
-
-                    setNextEpisode(str);
-                }} value={nextEpisode}></input>
-            </div>
-
-            <div className='row mt-4'>
-                <div className='col d-grid'>
-                    <button type="button" className="btn btn-primary" onClick={handleSave}>Save</button>
-                </div>
-                <div className='col d-grid'>
-                <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
-                </div>
-            </div>
-        </div>
+        </>
     );
   }
   
