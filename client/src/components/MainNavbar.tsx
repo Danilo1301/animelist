@@ -4,7 +4,7 @@ function MainNavbar() {
     
     return (
         <>
-           <nav className="navbar navbar-expand-lg" style={{background: "#e3e5ff"}}>
+           <nav className="navbar navbar-expand-lg" style={{background: "#becbff"}}>
                 <div className="container">
                     <img style={{width: "50px", marginRight: "10px"}} src="/logo.png" alt="Logo" />
                     <div style={{marginRight: "40px"}}>Animelist</div>

@@ -47,7 +47,7 @@ function Home() {
             <MainNavbar/>
             <div className='container'>
                 
-                <div className='row p-2'>
+                <div className='row' style={{marginTop: "5px"}}>
                     <div className='col'>
                         <button type="button" className="btn btn-primary" onClick={handleAddNewAnime}>Add new anime</button>
                     </div>
@@ -82,8 +82,8 @@ function getCookie(name: any) {
     var ca = document.cookie.split(';');
     for(var i=0;i < ca.length;i++) {
         var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        while (c.charAt(0)===' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length,c.length);
     }
     return null;
 }
